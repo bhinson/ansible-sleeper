@@ -1,0 +1,6 @@
+---
+
+- name: Example for container-based execution
+  hosts: all
+  roles:
+    - role: sleeper-ansible

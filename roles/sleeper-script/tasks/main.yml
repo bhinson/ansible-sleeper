@@ -1,0 +1,5 @@
+---
+# Test script capabilities with Ansible
+ 
+- name: Launch custom script
+  ansible.builtin.script: sleeper.sh

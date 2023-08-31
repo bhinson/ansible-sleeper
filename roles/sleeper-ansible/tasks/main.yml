@@ -1,0 +1,30 @@
+---
+# sleeper.sh converted to Ansible playbook
+ 
+# Note: Removed the verification step to check if all variables
+# are valid, as this is enforced within the AAP controller template.
+# If needed, see the ansible.builtin.assert module:
+# https://docs.ansible.com/ansible/latest/collections/ansible/builtin/assert_module.html
+
+- name: Verify secret key
+  ansible.builtin.debug:
+    msg: "Provided correct SECRET_KEY"
+  when: SECRET_KEY == "topsecretstring"
+
+- name: Ping host
+  ansible.netcommon.net_ping:
+    dest: "{{ HOST_NAME }}"
+    count: 3
+
+- name: Sleeping {{ SLEEP_TIME }} seconds
+  ansible.builtin.pause:
+    seconds: "{{ SLEEP_TIME }}"
+
+- name: Thank you!
+  ansible.builtin.debug:
+    msg: "Thank you!"
+
+- name: Print message to stderr
+  ansible.builtin.fail:
+    msg: "Thank you in STDERR as well!"
+  ignore_errors: true
