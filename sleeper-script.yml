@@ -2,5 +2,12 @@
 
 - name: Example for container-based execution
   hosts: all
+
+  # Set environment variables that script expects
+  environment:
+    SECRET_KEY: topsecretstring
+    SLEEP_TIME: 2
+    HOST_NAME: controller1.home
+
   roles:
     - role: sleeper-script
