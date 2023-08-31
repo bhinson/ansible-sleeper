@@ -12,9 +12,7 @@
   when: SECRET_KEY == "topsecretstring"
 
 - name: Ping host
-  ansible.netcommon.net_ping:
-    dest: "{{ HOST_NAME }}"
-    count: 3
+  ansible.builtin.command: "ping -c 3 {{ HOST_NAME }}"
 
 - name: Sleeping {{ SLEEP_TIME }} seconds
   ansible.builtin.pause:
